@@ -31,7 +31,7 @@ body {
 
 #interface {
     background-color: #B5B58A;
-    margin-left: 1%;
+    margin-left: 0.7%;
     height: 100%;
     width: 79%;
 }
@@ -45,14 +45,20 @@ body {
 }
 
 #written {
-    background-color: white;
+    background-color: #B5B58A;
     width: 100%;
     margin-top: 1%;
     height: 6%;
+    display: inline-flex;
+}
+
+#texting {
+    background-color: white;
+    width: 100%;
     border: 1px solid black;
 }
 
-#written>pre {
+#texting>pre {
     margin: 0;
     padding: 1%;
 }
