@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <script src="canvas.js"></script>
+    <script src="script.js"></script>
 
     <meta charset="utf-8">
 </head>
@@ -41,9 +42,10 @@
 
             <div id="written">
                 <div id="texting">
-                    <pre>Wpisz swoją komendę! :)...</pre></div>
+                    <textarea id="text_area" rows="3" cols="100" placeholder="Wpisz swoją komendę! :)..."></textarea>
+                </div>
                 <input type="button" value="Wykonaj">
-                <input type="button" value="Usuń">
+                <input id="clear" type="button" value="Usuń" onclick="remove()">
             </div>
 
         </div>
