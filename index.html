@@ -5,8 +5,7 @@
     <title>Interpreter CODEŁOSIE</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <script src="canvas.js"></script>
-    <script src="script.js"></script>
+
 
     <meta charset="utf-8">
 </head>
@@ -30,13 +29,18 @@
 
             </div>
             <div id="inf">
-
-
+                <ul id="menu-list">
+                    <li id="menu-point">
+                        <img src="img/rzut1.png" id="rzut1" alt="Nasz Złówik">
+                        <p> To nasz mały przyjaciel - Złówik, będzie on nam towarzyszył w interpreterze jako przewodnik ;) możesz go nazywać jak chcesz np.Marcin :D
+                        </p>
+                    </li>
+                </ul>
             </div>
         </div>
         <div id="interface">
             <div id="map">
-                <canvas></canvas>
+                <canvas id="myCanvas"></canvas>
 
             </div>
 
@@ -50,7 +54,8 @@
 
         </div>
     </div>
-
+    <script src="canvas.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
