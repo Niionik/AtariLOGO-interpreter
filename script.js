@@ -1,4 +1,4 @@
 function remove(){
-    document.getElementById('text_area').value = null;
+    document.querySelector("#text_area").value = null;
     }
     
