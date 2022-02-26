@@ -7,16 +7,24 @@ var img = document.getElementById("rzut1");
 
 rzptw = (c.width / 2) - (img.offsetWidth / 2);
 rzpth = (c.height / 2) - (img.offsetHeight / 2);
+
+class turtle {
+    constructor(post_x, post_y) {
+        this.post_x = post_x;
+        this.post_y = post_y;
+        direction_angle = 0, 359;
+    }
+}
 onload:
     img.onload = function() {
         ctx.drawImage(img, rzptw, rzpth);
     }
 
-//rysuje ale do przodu tylko i trzeba lepiej ustawić początkowe miejsce rysowania i zrobić tak żeby rzuf sie ruszał też plus obracanie
-
 wspx = (c.width / 2 + 8);
-wspy = (c.height / 2 - 1); //tu sie ustawia początkową pozycje od której zaczyna sie rysować i powinno chyba być tam gdzie żółw tylko nie do końca jest celnie ustawione
-alfa = 0; //to kąt zerowy do obracania żółwia/rysowania
+wspy = (c.height / 2 - 1);
+var alfa = 0;
+
+
 function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
 
     var word = document.querySelector("#text_area").value; //pobiera wartość z pola tekstowego
@@ -27,23 +35,30 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
     var value = Number(split[1]); //wartość liczbowa w tablicy
     console.log(split[0], split[1]); //wyrzuca wszystko pobrane do konsoli
 
+
     var rad = (alfa * Math.PI) / 180; // to ma coś robić z kątem żółwia/rysowania ale w js to jest w radianach a nie stopniach więc sie trzeba bawić
-    var wy = direction * Math.cos(rad); //w liczenie tego wszystkiego
-    var wx = direction * Math.sin(rad); //
+    var wy = value * Math.cos(rad); //w liczenie tego wszystkiego
+    var wx = value * Math.sin(rad); //
 
 
 
     switch (direction) { //switch w którym każda komenda jest pod osobnym case'em
-        case "fd": //rysuje do przodu, do góry, podajesz "fd *wartość liczbowa*"
-            ctx.beginPath(); //idk co to robi
+        case "fd":
+
+            ctx.beginPath(); //idk co to robi 
+
             ctx.moveTo(wspx, wspy); //chyba rusza punkt rysowania z początku na podane kordy
+            wspx = wx + wspx;
+            wspy = wspy - wy;
             ctx.lineTo(wspx, wspy - value); //rysuje linie po tej trasie
             ctx.stroke(); //idk co to robi
-            img.moveTo(0, img.offsetHeight + split[1]);
-            wspy = wspy - value; //ustawia nowe położenie rysowania
+
+            wspy = wspy - value; //ustawia nowe położenie rysowania 
+            //img.moveTo(0, wspy);
             break;
 
         case "rt": //obracanie rzufia, podajesz "rt *stopnie obrotu"
+
             alfa = split[1]; //to ma zmienić kąt na podany
             break; //TODO: zrobić tak żeby nowy kąt się zapisywał bo na razie cały czas zmienia kąt względem początkowego
             //znaczy na razie to obracanie nawet nie działa i trzeba coś z tym zrobić
