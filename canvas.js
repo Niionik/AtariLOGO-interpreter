@@ -14,8 +14,8 @@ onload:
 
 //rysuje ale do przodu tylko i trzeba lepiej ustawić początkowe miejsce rysowania i zrobić tak żeby rzuf sie ruszał też plus obracanie
 
-wspx = (c.width / 2) - (wspx.offsetWidth / 2);
-wspy = rzpth; //tu sie ustawia początkową pozycje od której zaczyna sie rysować i powinno chyba być tam gdzie żółw tylko nie do końca jest celnie ustawione
+wspx = (c.width / 2 + 8);
+wspy = (c.height / 2 - 1); //tu sie ustawia początkową pozycje od której zaczyna sie rysować i powinno chyba być tam gdzie żółw tylko nie do końca jest celnie ustawione
 alfa = 0; //to kąt zerowy do obracania żółwia/rysowania
 function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
 
@@ -39,7 +39,7 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
             ctx.moveTo(wspx, wspy); //chyba rusza punkt rysowania z początku na podane kordy
             ctx.lineTo(wspx, wspy - value); //rysuje linie po tej trasie
             ctx.stroke(); //idk co to robi
-            img.moveTo(0, split[1]);
+            img.moveTo(0, img.offsetHeight + split[1]);
             wspy = wspy - value; //ustawia nowe położenie rysowania
             break;
 
