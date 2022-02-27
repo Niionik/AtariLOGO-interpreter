@@ -20,8 +20,8 @@ onload:
         ctx.drawImage(img, rzptw, rzpth);
     }
 
-wspx = (c.width / 2 + 8);
-wspy = (c.height / 2 - 1);
+wspx = (c.width / 2);
+wspy = (c.height / 2);
 var alfa = 0;
 
 
@@ -63,8 +63,10 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
             wspy = wspy - wy;
             ctx.moveTo(wspx, wspy);
             ctx.stroke();
+            break;
         default:
             alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
+            break;
     }
 
 
