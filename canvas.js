@@ -46,23 +46,25 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
         case "fd":
 
             ctx.beginPath(); //idk co to robi 
-
             ctx.moveTo(wspx, wspy); //chyba rusza punkt rysowania z początku na podane kordy
             wspx = wx + wspx;
             wspy = wspy - wy;
             ctx.lineTo(wspx, wspy - value); //rysuje linie po tej trasie
             ctx.stroke(); //idk co to robi
 
-            wspy = wspy - value; //ustawia nowe położenie rysowania 
-            //img.moveTo(0, wspy);
+            wspy = wspy - value;
             break;
 
-        case "rt": //obracanie rzufia, podajesz "rt *stopnie obrotu"
-
-            alfa = split[1]; //to ma zmienić kąt na podany
-            break; //TODO: zrobić tak żeby nowy kąt się zapisywał bo na razie cały czas zmienia kąt względem początkowego
-            //znaczy na razie to obracanie nawet nie działa i trzeba coś z tym zrobić
-            //potem tak jak w "fd" zrobić ustawienie nowego kierunku 
+        case "rt":
+            alfa = split[1];
+            break;
+        case "jp": // tu przeskakujemy z rysowaniem ale tu też przeba coś poprawić
+            wspx = wx + wspx;
+            wspy = wspy - wy;
+            ctx.moveTo(wspx, wspy);
+            ctx.stroke();
+        default:
+            alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
     }
 
 
