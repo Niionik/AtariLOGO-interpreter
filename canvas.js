@@ -6,7 +6,7 @@ var img = document.getElementById("rzut1");
 //ctx.drawImage(img, 900, 700);
 
 rzptw = (c.width / 2) - (img.offsetWidth / 2);
-rzpth = (c.height / 2) - (img.offsetHeight / 2);
+rzpth = (c.height / 2) - (img.offsetWidth / 4);
 
 class turtle {
     constructor(post_x, post_y) {
@@ -39,6 +39,8 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
     var rad = (alfa * Math.PI) / 180; // to ma coś robić z kątem żółwia/rysowania ale w js to jest w radianach a nie stopniach więc sie trzeba bawić
     var wy = value * Math.cos(rad); //w liczenie tego wszystkiego
     var wx = value * Math.sin(rad); //
+
+
 
 
 
