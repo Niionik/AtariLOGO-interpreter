@@ -12,13 +12,27 @@ class turtle {
     constructor(post_x, post_y) {
         this.post_x = post_x;
         this.post_y = post_y;
-        direction_angle = 0, 359;
+        // direction_angle = 0, 359;
+        this.draw = function() {
+
+            ctx.drawImage(img, post_x, post_y);
+        }
+
+        this.move = function() {
+            post_x = wspx - (img.offsetWidth / 2);
+            post_y = wspy - (img.offsetWidth / 2);
+            ctx.transform(post_x, post_y);
+            ctx.rotate(alfa);
+        }
     }
 }
-onload:
-    img.onload = function() {
-        ctx.drawImage(img, rzptw, rzpth);
-    }
+
+let rzuf = new turtle(rzptw, rzpth);
+
+onload: rzuf.draw();
+/*img.onload = function() {
+    ctx.drawImage(img, rzptw, rzpth);
+}*/
 
 wspx = (c.width / 2);
 wspy = (c.height / 2);
@@ -55,6 +69,7 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
             ctx.stroke(); //idk co to robi
 
             wspy = wspy - value;
+
             break;
 
         case "rt":
@@ -71,6 +86,6 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
             break;
     }
 
-
+    rzuf.move();
     document.querySelector("#text_area").value = null; //czyści pole tekstowe po uruchomieniu komendy
 }
