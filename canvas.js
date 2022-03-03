@@ -1,4 +1,4 @@
-var c = document.getElementById("myCanvas");
+var c = document.getElementById("myCanvas"); //TODO: dwa canvasy, na jednym rzuf a na drugim linie
 c.width = window.innerWidth;
 c.height = window.innerHeight;
 var ctx = c.getContext("2d");
@@ -8,47 +8,96 @@ var img = document.getElementById("rzut1");
 rzptw = (c.width / 2) - (img.offsetWidth / 2);
 rzpth = (c.height / 2) - (img.offsetWidth / 4);
 
-class turtle {
-    constructor(post_x, post_y) {
-        this.post_x = post_x;
-        this.post_y = post_y;
-        // direction_angle = 0, 359;
-        this.draw = function() {
+class Turtle {
+    pos_x = 0;
+    pos_y = 0;
 
-           // ctx.clearRect((wspx - wx),(wspy+wy));
-            ctx.drawImage(img, post_x, post_y);
-        }
-        this.remove = function(){
-            ctx.clearRect(wspx-(img.offsetWidth / 2),wspy-(img.offsetWidth / 2),70,70);
-            
-            ctx.stroke();
+    last_pos_x = 0;
+    last_pos_y = 0;
 
-        }
+    angle = 0;
+    ctx = null;
+    turtleImg;
 
-        this.move = function() {
-            
-            post_x = wspx - (img.offsetWidth / 2);
-            post_y = wspy - (img.offsetWidth / 2);
-           // ctx.translate(post_x, post_y);
-            //ctx.rotate(alfa);
-           // ctx.clearRect(post_x,post_y,40,40);
+    constructor(post_x, post_y, ctx, turtleImg) {
+        this.turtleImg = turtleImg;
+        var isLoaded = this.turtleImg.complete && this.turtleImg.naturalHeight !== 0;
+        console.log(isLoaded);
+        this.pos_x = post_x;
+        this.pos_y = post_y;
 
-            ctx.drawImage(img, post_x, post_y);
-            ctx.rotate(alfa);
-            
-        }
+        this.last_pos_x = this.pos_x;
+        this.last_pos_y = this.pos_y;
 
+        this.ctx = ctx;
 
-        
+        this.ctx.moveTo(this.pos_x, this.pos_y);
+        // this.ctx.moveTo(0, 0);
     }
+
+    fd(pixels){
+
+        var wx = pixels * Math.sin(this.getAngle())
+        var wy = pixels * Math.cos(this.getAngle());
+
+        this.last_pos_x = this.pos_x;
+        this.last_pos_y = this.pos_y;
+
+        this.pos_x -= wx;
+        this.pos_y -= wy;
+
+    }
+
+    drawTurtle(){
+        this.ctx.save()
+
+        //Convert degrees to radian
+        var rad = this.getAngle();
+
+        //Set the origin to the center of the image
+        this.ctx.translate(this.pos_x, this.pos_y);
+
+        //Rotate the canvas around the origin
+        this.ctx.rotate(rad);
+
+        //draw the image
+        this.ctx.drawImage(this.turtleImg,this.turtleImg.offsetWidth / 2 * (-1),this.turtleImg.offsetHeight / 2 * (-1),this.turtleImg.offsetWidth,this.turtleImg.offsetHeight);
+
+        // Restore canvas state as saved from above
+        this.ctx.restore();
+    }
+
+    getAngle(){
+        return (this.angle * Math.PI) / 180;
+    }
+
+    draw() {
+
+        // ctx.clearRect((wspx - wx),(wspy+wy));
+        // ctx.drawImage(img, post_x, post_y);
+        console.log(this.pos_x, this.pos_y, this.angle);
+
+        this.ctx.beginPath(); //rozpocznij rysowanie
+        this.ctx.moveTo(this.last_pos_x, this.last_pos_y);
+        this.ctx.lineTo(this.pos_x, this.pos_y); //rysuje linie po tej trasie
+        this.ctx.stroke(); //zakończ rysowanie - rysuj
+
+        this.drawTurtle();
+    }
+    remove(){
+        ctx.clearRect(wspx-(img.offsetWidth / 2),wspy-(img.offsetWidth / 2),70,70);
+        ctx.stroke();
+    }
+
 }
 
-let rzuf = new turtle(rzptw, rzpth);
+let rzuf = new Turtle(rzptw, rzpth, ctx, img);
 
-onload: rzuf.draw();
-/*img.onload = function() {
-    ctx.drawImage(img, rzptw, rzpth);
-}*/
+img.onload = function() {
+    console.log("95");
+    rzuf = new Turtle(rzptw, rzpth, ctx, img);
+}    
+console.log("95");
 
 wspx = (c.width / 2);
 wspy = (c.height / 2);
@@ -66,30 +115,14 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
     console.log(split[0], split[1]); //wyrzuca wszystko pobrane do konsoli
 
 
-    var rad = (alfa * Math.PI) / 180; // to ma coś robić z kątem żółwia/rysowania ale w js to jest w radianach a nie stopniach więc sie trzeba bawić
-    var wy = value * Math.cos(rad); //w liczenie tego wszystkiego
-    console.log(wy)
-    var wx = value * Math.sin(rad); //
-    console.log(wx)
-
-
-
 
     if (direction == "fd") { //switch w którym każda komenda jest pod osobnym case'em
-            rzuf.remove();
-            ctx.beginPath(); //idk co to robi 
-            ctx.moveTo(wspx, wspy); //chyba rusza punkt rysowania z początku na podane kordy
-            wspx = wx + wspx;
-            wspy = wspy - wy;
-            ctx.lineTo(wspx, wspy); //rysuje linie po tej trasie
-            ctx.stroke(); //idk co to robi
-
-
-            rzuf.move();
+           rzuf.fd(value);
+           rzuf.draw();
 
     } else if (direction == "rt") {
-            //alfa = split[1];
-            alfa = Number(alfa)+value;
+        rzuf.angle -= value;
+        rzuf.draw();
             
     } else if (direction == "jp") {
             wspx = wx + wspx;
@@ -103,9 +136,7 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
             alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
 
     }
-    console.log("rad = " + rad);
-    console.log("alfa = " + alfa);
-    document.querySelector("#text_area").value = null; //czyści pole tekstowe po uruchomieniu komendy
+    // document.querySelector("#text_area").value = null; //czyści pole tekstowe po uruchomieniu komendy
 }
 
 
