@@ -15,15 +15,30 @@ class turtle {
         // direction_angle = 0, 359;
         this.draw = function() {
 
+           // ctx.clearRect((wspx - wx),(wspy+wy));
             ctx.drawImage(img, post_x, post_y);
+        }
+        this.remove = function(){
+            ctx.clearRect(wspx-(img.offsetWidth / 2),wspy-(img.offsetWidth / 2),70,70);
+            
+            ctx.stroke();
+
         }
 
         this.move = function() {
+            
             post_x = wspx - (img.offsetWidth / 2);
             post_y = wspy - (img.offsetWidth / 2);
-            ctx.transform(post_x, post_y);
+           // ctx.translate(post_x, post_y);
+            //ctx.rotate(alfa);
+           // ctx.clearRect(post_x,post_y,40,40);
+
+            ctx.drawImage(img, post_x, post_y);
             ctx.rotate(alfa);
+            
         }
+
+        
     }
 }
 
@@ -52,40 +67,39 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
 
     var rad = (alfa * Math.PI) / 180; // to ma coś robić z kątem żółwia/rysowania ale w js to jest w radianach a nie stopniach więc sie trzeba bawić
     var wy = value * Math.cos(rad); //w liczenie tego wszystkiego
+    console.log(wy)
     var wx = value * Math.sin(rad); //
+    console.log(wx)
 
 
 
 
 
-    switch (direction) { //switch w którym każda komenda jest pod osobnym case'em
-        case "fd":
-
+    if (direction == "fd") { //switch w którym każda komenda jest pod osobnym case'em
+            rzuf.remove();
             ctx.beginPath(); //idk co to robi 
             ctx.moveTo(wspx, wspy); //chyba rusza punkt rysowania z początku na podane kordy
             wspx = wx + wspx;
             wspy = wspy - wy;
-            ctx.lineTo(wspx, wspy - value); //rysuje linie po tej trasie
+            ctx.lineTo(wspx, wspy); //rysuje linie po tej trasie
             ctx.stroke(); //idk co to robi
 
-            wspy = wspy - value;
 
-            break;
+            rzuf.move();
 
-        case "rt":
+    } else if (direction == "rt") {
             alfa = split[1];
-            break;
-        case "jp": // tu przeskakujemy z rysowaniem ale tu też przeba coś poprawić
+
+    } else if (direction == "jp") {
             wspx = wx + wspx;
             wspy = wspy - wy;
             ctx.moveTo(wspx, wspy);
             ctx.stroke();
-            break;
-        default:
+
+    } else {   
             alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
-            break;
+
     }
 
-    rzuf.move();
     document.querySelector("#text_area").value = null; //czyści pole tekstowe po uruchomieniu komendy
 }
