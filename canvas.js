@@ -38,6 +38,7 @@ class turtle {
             
         }
 
+
         
     }
 }
@@ -74,7 +75,6 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
 
 
 
-
     if (direction == "fd") { //switch w którym każda komenda jest pod osobnym case'em
             rzuf.remove();
             ctx.beginPath(); //idk co to robi 
@@ -88,18 +88,28 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
             rzuf.move();
 
     } else if (direction == "rt") {
-            alfa = split[1];
-
+            //alfa = split[1];
+            alfa = Number(alfa)+value;
+            
     } else if (direction == "jp") {
             wspx = wx + wspx;
             wspy = wspy - wy;
             ctx.moveTo(wspx, wspy);
             ctx.stroke();
+    }else if (direction == "ht"){
+  
 
     } else {   
             alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
 
     }
-
+    console.log("rad = " + rad);
+    console.log("alfa = " + alfa);
     document.querySelector("#text_area").value = null; //czyści pole tekstowe po uruchomieniu komendy
 }
+
+
+//fd - rzuf idzie
+//rt - obrót o *kąt* w prawo
+//jp = rzuf skacze
+//ht - chowa rzufia
