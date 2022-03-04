@@ -9,7 +9,8 @@ var v = document.getElementById("youCanvas"); //TODO: dwa canvasy, na jednym rzu
 v.width = window.innerWidth;
 v.height = window.innerHeight;
 var ctv = v.getContext("2d");
-
+ctv.clearRect(0, 0, v.width, v.height);
+ctx.clearRect(0, 0, c.width, c.height);
 
 rzptw = (c.width / 2) - (img.offsetWidth / 2);
 rzpth = (c.height / 2) - (img.offsetWidth / 4);
@@ -93,7 +94,7 @@ class Turtle {
         this.drawTurtle();
     }
     remove() {
-        ctv.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctv.clearRect(0, 0, ctv.canvas.width, ctv.canvas.height);
         ctv.stroke();
     }
 
@@ -103,7 +104,7 @@ let rzuf = new Turtle(rzptw, rzpth, ctx, ctv, img);
 
 img.onload = function() {
     console.log("95");
-    rzuf = new Turtle(rzptw, rzpth, ctv, img);
+    rzuf = new Turtle(rzptw, rzpth, ctx, ctv, img);
 }
 console.log("95");
 
@@ -148,7 +149,7 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
         alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
 
     }
-    document.querySelector("#text_area").value = null; //czyści pole tekstowe po uruchomieniu komendy
+    // document.querySelector("#text_area").value = null; //czyści pole tekstowe po uruchomieniu komendy
 }
 
 
