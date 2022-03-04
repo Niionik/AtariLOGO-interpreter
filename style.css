@@ -58,6 +58,7 @@ canvas {
 
 #youCanvas {
     z-index: 10;
+    background: transparent;
 }
 
 #map {
