@@ -8,7 +8,7 @@ var img = document.getElementById("rzut1");
 var v = document.getElementById("youCanvas"); //TODO: dwa canvasy, na jednym rzuf a na drugim linie
 v.width = window.innerWidth;
 v.height = window.innerHeight;
-var ctv = c.getContext("2d");
+var ctv = v.getContext("2d");
 
 
 rzptw = (c.width / 2) - (img.offsetWidth / 2);
@@ -26,7 +26,7 @@ class Turtle {
     ctv = null;
     turtleImg;
 
-    constructor(post_x, post_y, ctv, turtleImg) {
+    constructor(post_x, post_y, ctx, ctv, turtleImg) {
         this.turtleImg = turtleImg;
         var isLoaded = this.turtleImg.complete && this.turtleImg.naturalHeight !== 0;
         console.log(isLoaded);
@@ -99,7 +99,7 @@ class Turtle {
 
 }
 
-let rzuf = new Turtle(rzptw, rzpth, ctv, img);
+let rzuf = new Turtle(rzptw, rzpth, ctx, ctv, img);
 
 img.onload = function() {
     console.log("95");
