@@ -93,8 +93,8 @@ class Turtle {
         this.drawTurtle();
     }
     remove() {
-        ctx.clearRect(wspx - (img.offsetWidth / 2), wspy - (img.offsetWidth / 2), 70, 70);
-        ctx.stroke();
+        ctv.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctv.stroke();
     }
 
 }
@@ -125,19 +125,23 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
 
 
     if (direction == "fd") { //switch w którym każda komenda jest pod osobnym case'em
+        rzuf.remove();
         rzuf.fd(value);
         rzuf.draw();
 
     } else if (direction == "rt") {
+        rzuf.remove();
         rzuf.angle -= value;
         rzuf.draw();
 
     } else if (direction == "jp") {
+        rzuf.remove();
         wspx = wx + wspx;
         wspy = wspy - wy;
         ctx.moveTo(wspx, wspy);
         ctx.stroke();
     } else if (direction == "ht") {
+        rzuf.remove();
 
 
     } else {
