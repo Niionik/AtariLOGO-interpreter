@@ -113,43 +113,54 @@ wspy = (c.height / 2);
 var alfa = 0;
 
 
+
+
 function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
 
-    var word = document.querySelector("#text_area").value; //pobiera wartość z pola tekstowego
+    var word = document.querySelector("#text_area").value;
     var split = word.split(" "); //rozdziela na dwie części oddzielone spacją czyli [komenda]*spacja*[wartość]
-
-    //a tu trzeba zrobic tak żeby wyłapywał więcej niż jedną komendę plus wartość do każdej
     var direction = split[0]; //komenda w tablicy 
     var value = Number(split[1]); //wartość liczbowa w tablicy
-    console.log(split[0], split[1]); //wyrzuca wszystko pobrane do konsoli
+    
+    rozbijanie(word);
+
+
+    //for(i=0; i<line.length; i++){
+    //}
+    
 
 
 
-    if (direction == "fd") { //switch w którym każda komenda jest pod osobnym case'em
-        rzuf.remove();
-        rzuf.fd(value);
-        rzuf.draw();
+
+    if (direction == "fd") { 
+           rzuf.fd(value);
+           rzuf.draw();
 
     } else if (direction == "rt") {
-        rzuf.remove();
         rzuf.angle -= value;
         rzuf.draw();
-
+            
     } else if (direction == "jp") {
-        rzuf.remove();
-        wspx = wx + wspx;
-        wspy = wspy - wy;
-        ctx.moveTo(wspx, wspy);
-        ctx.stroke();
-    } else if (direction == "ht") {
-        rzuf.remove();
+            wspx = wx + wspx;
+            wspy = wspy - wy;
+            ctx.moveTo(wspx, wspy);
+            ctx.stroke();
+    }else if (direction == "ht"){
+  
 
-
-    } else {
-        alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
+    } else {   
+            alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
 
     }
     // document.querySelector("#text_area").value = null; //czyści pole tekstowe po uruchomieniu komendy
+}
+
+
+function rozbijanie(word){
+    var line = word.split("\n"); //rozbija po \n
+    console.log("ile komend = "+line.length);
+    console.log(line); //wyrzuca wszystko pobrane do konsoli
+    
 }
 
 
