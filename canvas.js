@@ -143,13 +143,21 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
         ctx.stroke();
     } else if (direction == "ht") {
         rzuf.remove();
+    } else if (direction == "CS") {
+        rzuf.remove();
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        console.log(rzptw, rzpth);
+
+        console.log(post_x, post_y);
+        console.log(wspx, wspy);
+        ctx.moveTo(rzptw, rzpth);
 
 
     } else {
         alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
 
     }
-    // document.querySelector("#text_area").value = null; //czyści pole tekstowe po uruchomieniu komendy
+    document.querySelector("#text_area").value = null; //czyści pole tekstowe po uruchomieniu komendy
 }
 
 
