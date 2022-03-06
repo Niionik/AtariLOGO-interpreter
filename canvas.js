@@ -185,8 +185,12 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
     rozbijanie(word);
 
     for (var cmd of komendy) {
+        if(isNaN(cmd[1])){
+            alert("Uwaga: parametr komendy musi być liczbą");
+
+        }else {
         rzuf[cmd[0]](typeof cmd[1] !== "undefined" ? cmd[1] : null); //to ma wywoływać klasy z klasy turtle
-    }
+    }}
     /*
         if (direction == "fd") {//done
             rzuf.remove();
