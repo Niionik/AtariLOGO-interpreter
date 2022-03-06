@@ -13,7 +13,7 @@ ctv.clearRect(0, 0, v.width, v.height);
 ctx.clearRect(0, 0, c.width, c.height);
 
 rzptw = (c.width / 2) - (img.offsetWidth / 2);
-rzpth = (c.height / 2) - (img.offsetWidth / 4);
+rzpth = (c.height / 2) - (img.offsetWidth / 2);
 
 class Turtle {
     pos_x = 0;
@@ -145,10 +145,11 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
     } else if (direction == "HT") {
         rzuf.remove();
     } else if (direction == "CS") {
-        rzuf.remove();
-        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        /* rzuf.remove();
+         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-        ctx.moveTo(rzptw, rzpth);
+         ctx.moveTo(rzptw, rzpth);*/
+        window.setInterval(location.reload(true), 1);
 
 
     } else {
