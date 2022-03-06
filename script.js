@@ -25,9 +25,12 @@ function remove(){
         }                  
     function replace(){
         document.getElementById("inf").interHTML="";
-
         }
 
     function inst(){
-        document.getElementById("inf").innerHTML="<centre><p>Przygotowaliśmy instrukcje komend oraz gotowe procedury prostych kształtów</p>FD - Żółw idzie do przodu<br>BK - Żółw idzie do tyłu<br>RT - Obrót o *kąt* w prawo<br>LT - Obrót o *kąt* w lewo<br>HT - Żółw się chowa<br>ST - Żółw się pojawia<br>CS - Czyści ekran<br>PU - Żółw nie zostawia śladu<br>PD - Żółw zostawia ślad<br>Repeat - Powtarza komendę daną ilość razy</p></centre>";
+        document.getElementById("inf").innerHTML="<centre><p>Poniżej znajduje się opis działania każdej z komend: </p>FD - Żółw idzie do przodu<br>BK - Żółw idzie do tyłu<br>RT - Obrót o *kąt* w prawo<br>LT - Obrót o *kąt* w lewo<br>HT - Żółw się chowa<br>ST - Żółw się pojawia<br>CS - Czyści ekran<br>PU - Żółw nie zostawia śladu<br>PD - Żółw zostawia ślad<br>Repeat - Powtarza komendę daną ilość razy (WIP)</p></centre>";
         }
+
+    function base(){
+        document.getElementById("inf").innerHTML="<p>To nasz mały przyjaciel - Żółwik, będzie on nam towarzyszył w interpreterze jako przewodnik ;) możesz go nazywać jak chcesz np.Marcin :D. Wpisz komendę aby żółw pojawił się na planszy. Jeśli nie wiesz jakich komend możesz użyć, znajdują się ona w zakładce 'Instrukcja' powyżej.</p>"
+    }
