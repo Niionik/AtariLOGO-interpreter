@@ -103,9 +103,6 @@ class Turtle {
         this.penDown = true;
     }
 
-    repeat() {
-
-    }
 
     drawTurtle() {
         this.ctv.save()
@@ -167,27 +164,40 @@ wspy = (c.height / 2);
 var alfa = 0;
 
 
-function draw() { 
+function draw() {
 
     fragment();
 
     for (var cmd of commands) {
-        if(isNaN(cmd[1])){
-            alert("Uwaga: parametr komendy "+ cmd[0] +" musi być liczbą");
+        if (isNaN(cmd[1])) {
+            alert("Uwaga: parametr komendy " + cmd[0] + " musi być liczbą");
         } else {
-        rzuf[cmd[0]](typeof cmd[1] !== "undefined" ? cmd[1] : null); 
+            rzuf[cmd[0]](typeof cmd[1] !== "undefined" ? cmd[1] : null);
         }
-    } 
-    
-    document.querySelector("#text_area").value = null; 
+    }
+
+    document.querySelector("#text_area").value = null;
 }
+
+function repaet() {
+    for (var cmd of commands) {
+        if (isNaN(cmd[1])) {
+            alert("Uwaga: parametr komendy " + cmd[0] + " musi być liczbą");
+        } else {
+            rzuf[cmd[0]](typeof cmd[1] !== "undefined" ? cmd[1] : null);
+        }
+    }
+
+    document.querySelector("#text_area").value = null;
+}
+
 
 
 function fragment() {
 
     var word = document.querySelector("#text_area").value;
 
-    var line = word.split("\n"); 
+    var line = word.split("\n");
 
     var line2 = line.join(" ");
     var line2 = line2.toLowerCase();
@@ -218,6 +228,15 @@ function fragment() {
             commands.push([line3[i]]);
         } else if (line3[i] == "pd") {
             commands.push([line3[i]]);
+        } else if (line3[i] == "repeat") {
+            var repeat = [lines3[i], lines3[++i]];
+            var nextCommands = lines3.split(i, ).join(" ");
+            var lastCloser = loopCommands.lastIndexOf("]");
+            var loopCommands = lines3.split(i, lastCloser).join(" ");
+            var loopArray = rozbijanie(loopCommands);
+
+            commands.push((repeat[0], repeat[1], loopArray));
+
         } else {
             alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
         }
