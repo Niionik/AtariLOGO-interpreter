@@ -27,6 +27,8 @@ class Turtle {
     ctv = null;
     turtleImg;
 
+    penDown = true;
+
     constructor(post_x, post_y, ctx, ctv, turtleImg) {
         this.turtleImg = turtleImg;
         var isLoaded = this.turtleImg.complete && this.turtleImg.naturalHeight !== 0;
@@ -57,7 +59,7 @@ class Turtle {
         this.draw();
     }
 
-    bk(pixels){
+    bk(pixels) {
         pixels = pixels * (-1);
         this.remove();
         var wx = pixels * Math.sin(this.getAngle())
@@ -71,35 +73,39 @@ class Turtle {
         this.draw();
     }
 
-    rt(pixels){
+    rt(pixels) {
         this.remove();
         this.angle -= pixels;
         this.draw();
     }
 
-    lt(pixels){
+    lt(pixels) {
         this.remove();
         this.angle -= pixels * (-1);
         this.draw();
     }
 
-    ht(){
+    ht() {
         this.remove();
     }
 
-    st(){
+    st() {
         this.draw();
     }
 
-    cs(){
+    cs() {
         this.start();
     }
 
-    pu(){
-
+    pu() {
+        this.penDown = false;
     }
 
-    pd(){
+    pd() {
+        this.penDown = true;
+    }
+
+    repeat() {
 
     }
 
@@ -132,10 +138,12 @@ class Turtle {
         // ctx.drawImage(img, post_x, post_y);
         console.log(this.pos_x, this.pos_y, this.angle);
 
-        this.ctx.beginPath(); //rozpocznij rysowanie
-        this.ctx.moveTo(this.last_pos_x, this.last_pos_y);
-        this.ctx.lineTo(this.pos_x, this.pos_y); //rysuje linie po tej trasie
-        this.ctx.stroke(); //zakończ rysowanie - rysuj
+        if (this.penDown) {
+            this.ctx.beginPath(); //rozpocznij rysowanie
+            this.ctx.moveTo(this.last_pos_x, this.last_pos_y);
+            this.ctx.lineTo(this.pos_x, this.pos_y); //rysuje linie po tej trasie
+            this.ctx.stroke(); //zakończ rysowanie - rysuj
+        }
 
         this.drawTurtle();
     }
@@ -176,45 +184,45 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
 
     rozbijanie(word);
 
-   for (var cmd of komendy){
-            rzuf[cmd[0]](cmd[1] ?? null) //to ma wywoływać klasy z klasy turtle
+    for (var cmd of komendy) {
+        rzuf[cmd[0]](typeof cmd[1] !== "undefined" ? cmd[1] : null); //to ma wywoływać klasy z klasy turtle
     }
-/*
-    if (direction == "fd") {//done
-        rzuf.remove();
-        rzuf.fd(value);
-        rzuf.draw();
+    /*
+        if (direction == "fd") {//done
+            rzuf.remove();
+            rzuf.fd(value);
+            rzuf.draw();
 
-    } else if (direction == "BK") { //done
-        rzuf.remove();
-        rzuf.fd(value * (-1));
-        rzuf.draw();
+        } else if (direction == "BK") { //done
+            rzuf.remove();
+            rzuf.fd(value * (-1));
+            rzuf.draw();
 
-    } else if (direction == "RT") { //przenieść do klasy trzeba
-        rzuf.remove();
-        rzuf.angle -= value;
-        rzuf.draw();
+        } else if (direction == "RT") { //przenieść do klasy trzeba
+            rzuf.remove();
+            rzuf.angle -= value;
+            rzuf.draw();
 
-    } else if (direction == "LT") { //przenieść do klasy trzeba
-        rzuf.remove();
-        rzuf.angle -= value * (-1);
-        rzuf.draw();
-    } else if (direction == "jp") { //potrzebne?
-        rzuf.remove();
-        wspx = wx + wspx;
-        wspy = wspy - wy;
-        ctx.moveTo(wspx, wspy);
-        ctx.stroke();
-    } else if (direction == "HT") { //done
-        rzuf.remove();
-    } else if (direction == "ST"){ //done
-        rzuf.draw();
-    } else if (direction == "CS") { //done
-        rzuf.start();
-        //window.setInterval(location.reload(true), 1);
-    } else {
-        alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
-    }*/
+        } else if (direction == "LT") { //przenieść do klasy trzeba
+            rzuf.remove();
+            rzuf.angle -= value * (-1);
+            rzuf.draw();
+        } else if (direction == "jp") { //potrzebne?
+            rzuf.remove();
+            wspx = wx + wspx;
+            wspy = wspy - wy;
+            ctx.moveTo(wspx, wspy);
+            ctx.stroke();
+        } else if (direction == "HT") { //done
+            rzuf.remove();
+        } else if (direction == "ST"){ //done
+            rzuf.draw();
+        } else if (direction == "CS") { //done
+            rzuf.start();
+            //window.setInterval(location.reload(true), 1);
+        } else {
+            alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
+        }*/
     document.querySelector("#text_area").value = null; //czyści pole tekstowe po uruchomieniu komendy
 }
 
@@ -237,23 +245,23 @@ function rozbijanie(word) {
         console.log("1");
         if (line3[i] == "fd") {
             komendy.push([line3[i], line3[++i]]);
-        } else if (line3[i] == "bk"){
+        } else if (line3[i] == "bk") {
             komendy.push([line3[i], line3[++i]]);
-        }else if (line3[i] == "rt") {
+        } else if (line3[i] == "rt") {
             komendy.push([line3[i], line3[++i]]);
-        } else if (line3[i] == "lt"){
+        } else if (line3[i] == "lt") {
             komendy.push([line3[i], line3[++i]]);
         } else if (line3[i] == "jp") {
             komendy.push([line3[i], line3[++i]]);
         } else if (line3[i] == "ht") {
             komendy.push([line3[i]]);
-        } else if (line3[i] == "st"){
+        } else if (line3[i] == "st") {
             komendy.push([line3[i]]);
         } else if (line3[i] == "cs") {
             komendy.push([line3[i]]);
-        } else if (line3[i] == "pu"){
+        } else if (line3[i] == "pu") {
             komendy.push([line3[i]]);
-        } else if (line3[i] == "pd"){
+        } else if (line3[i] == "pd") {
             komendy.push([line3[i]]);
         } else {
             alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
@@ -263,4 +271,3 @@ function rozbijanie(word) {
     console.log(komendy);
     console.log(line3);
 }
-
