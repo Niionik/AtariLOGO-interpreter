@@ -255,6 +255,8 @@ function rozbijanie(word) {
             komendy.push([line3[i]]);
         } else if (line3[i] == "pd"){
             komendy.push([line3[i]]);
+        } else {
+            alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
         }
 
     }
