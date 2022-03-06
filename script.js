@@ -6,7 +6,7 @@ function remove(){
         document.querySelector("#text_area").value = a;
 
     }
-    console.log(a)
+
 
     function kolo(){
         document.querySelector("#text_area").value = document.write="fd 100 rt 144 fd 100 rt 144 fd 100 rt 144 fd 100 rt 144 fd 100 rt 144";
@@ -21,7 +21,7 @@ function remove(){
         document.querySelector("#text_area").value = document.write="fd 100 rt 90 fd 300 rt 90 fd 100 rt 90 fd 300 rt 90";
         }      
         function trapez(){
-                document.querySelector("#text_area").value = document.write="rt 30 fd 100 rt 60 fd 100 rt 60 fd 100 rt 300 fd 150";
+                document.querySelector("#text_area").value = document.write="rt 30 fd 100 rt 60 fd 100 rt 60 fd 100 rt 120 fd 200 rt 90";
         }                  
         function replace(){
             document.getElementById("inf").interHTML="";
