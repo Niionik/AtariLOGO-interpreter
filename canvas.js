@@ -45,7 +45,7 @@ class Turtle {
     }
 
     fd(pixels) {
-
+        rzuf.remove();
         var wx = pixels * Math.sin(this.getAngle())
         var wy = pixels * Math.cos(this.getAngle());
 
@@ -54,7 +54,7 @@ class Turtle {
 
         this.pos_x -= wx;
         this.pos_y -= wy;
-
+        rzuf.draw();
     }
 
     drawTurtle() {
@@ -131,10 +131,10 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
     rozbijanie(word);
 
    for (var cmd of komendy){
-            rzuf[cmd[0]](cmd[1] ?? null, cmd[2] ?? null, cmd[3] ?? null) //to ma wywoływać klasy z klasy turtle
+            rzuf[cmd[0]](cmd[1] ?? null) //to ma wywoływać klasy z klasy turtle
     }
-
-    if (direction == "FD") {
+/*
+    if (direction == "fd") {
         rzuf.remove();
         rzuf.fd(value);
         rzuf.draw();
@@ -168,7 +168,7 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
         //window.setInterval(location.reload(true), 1);
     } else {
         alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
-    }
+    }*/
     document.querySelector("#text_area").value = null; //czyści pole tekstowe po uruchomieniu komendy
 }
 
@@ -188,7 +188,7 @@ function rozbijanie(word) {
     komendy = [];
     for (i = 0; i < line3.length; i++) {
         console.log("1");
-        if (line3[i] == "FD") {
+        if (line3[i] == "fd") {
             komendy.push([line3[i], line3[++i]]);
         } else if (line3[i] == "BK"){
             komendy.push([line3[i], line3[++i]]);
