@@ -50,32 +50,9 @@ canvas {
     background-color: whitesmoke;
 }
 
-#myCanvas,
-#youCanvas {
+#myCanvas {
     width: 100%;
     height: 100%;
-}
-
-#youCanvas {
-    z-index: 10;
-    background: transparent;
-}
-
-#map {
-    background-color: whitesmoke;
-    width: 100%;
-    height: 90%;
-    border: 1px solid black;
-    border-radius: 20px;
-    position: relative;
-}
-
-.canvas-field {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
 }
 
 #written {
@@ -125,7 +102,8 @@ canvas {
 #inf {
     background-color: white;
     width: 100%;
-    height: 95%;
+    height: 20%;
+    border: 1px solid black;
 }
 
 #menu-list {
@@ -138,5 +116,17 @@ canvas {
 }
 
 #rzut1 {
-    width: 10%;
+    width: 15%;
 }
+#d1 {
+    background-color: #B5B58A;
+    width: 100%;
+    height: 8%;
+    border: 1px solid black;
+    display: block;
+    text-align: center;
+    font-size: 45px;   
+}
+
+
+
