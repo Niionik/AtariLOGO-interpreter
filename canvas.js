@@ -258,8 +258,9 @@ function rozbijanie(word) {
         } else {
             alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
         }
-
     }
+
     console.log(komendy);
     console.log(line3);
 }
+
