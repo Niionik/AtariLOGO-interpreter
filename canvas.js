@@ -149,7 +149,7 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
         rzuf.remove();
         rzuf.angle -= value * (-1);
         rzuf.draw();
-    } else if (direction == "jp") {
+    } else if (direction == "jp") { 
         rzuf.remove();
         wspx = wx + wspx;
         wspy = wspy - wy;
@@ -157,6 +157,8 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
         ctx.stroke();
     } else if (direction == "HT") {
         rzuf.remove();
+    } else if (direction == "ST"){
+        rzuf.draw();
     } else if (direction == "CS") {
 
         rzuf.start();
@@ -170,7 +172,10 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
     document.querySelector("#text_area").value = null; //czyści pole tekstowe po uruchomieniu komendy
 }
 
-
+/*KOMENDY I ILE MAJA PARAMETROW:
+FD - I  RT - I  ST - 0  PU - 0  CS - 0
+BK - I  LT - I  HT - 0  PD - 0
+*/
 
 function rozbijanie(word) {
     var line = word.split("\n"); //rozbija po \n
@@ -185,26 +190,27 @@ function rozbijanie(word) {
         console.log("1");
         if (line3[i] == "FD") {
             komendy.push([line3[i], line3[++i]]);
-            console.log(komendy);
-            console.log(line3);
-        } else if (line3[i] == "RT") {
+        } else if (line3[i] == "BK"){
             komendy.push([line3[i], line3[++i]]);
-            console.log(komendy);
-            console.log(line3);
+        }else if (line3[i] == "RT") {
+            komendy.push([line3[i], line3[++i]]);
+        } else if (line3[i] == "LT"){
+            komendy.push([line3[i], line3[++i]]);
         } else if (line3[i] == "jp") {
             komendy.push([line3[i], line3[++i]]);
-            console.log(komendy);
-            console.log(line3);
-        } else if (line3[i] == "ht") {
+        } else if (line3[i] == "HT") {
             komendy.push([line3[i]]);
-            console.log(komendy);
-            console.log(line3);
+        } else if (line3[i] == "ST"){
+            komendy.push([line3[i]]);
         } else if (line3[i] == "CS") {
             komendy.push([line3[i]]);
-            console.log(komendy);
-            console.log(line3);
+        } else if (line3[i] == "PU"){
+            komendy.push([line3[i]]);
+        } else if (line3[i] == "PD"){
+            komendy.push([line3[i]]);
         }
 
     }
-
+    console.log(komendy);
+    console.log(line3);
 }
