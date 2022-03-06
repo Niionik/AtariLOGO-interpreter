@@ -115,17 +115,14 @@ var alfa = 0;
 
 function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
 
-    var word = document.querySelector("#text_area").value; //pobiera wartość z pola tekstowego
-    var split = word.split(" "); //rozdziela na dwie części oddzielone spacją czyli [komenda]*spacja*[wartość]
+    var word = document.querySelector("#text_area").value;
+    var split = word.split(" ");
+    var direction = split[0];
+    var value = Number(split[1]);
+    
+    rozbijanie(word);
 
-    //a tu trzeba zrobic tak żeby wyłapywał więcej niż jedną komendę plus wartość do każdej
-    var direction = split[0]; //komenda w tablicy 
-    var value = Number(split[1]); //wartość liczbowa w tablicy
-    console.log(split[0], split[1]); //wyrzuca wszystko pobrane do konsoli
-
-
-
-    if (direction == "fd") { //switch w którym każda komenda jest pod osobnym case'em
+    if (direction == "fd") {
         rzuf.remove();
         rzuf.fd(value);
         rzuf.draw();
@@ -161,7 +158,39 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
 }
 
 
-//fd - rzuf idzie
-//rt - obrót o *kąt* w prawo
-//jp = rzuf skacze
-//ht - chowa rzufia
+function rozbijanie(word){
+    var line = word.split("\n"); //rozbija po \n
+    console.log("ile komend = "+line.length);
+    console.log(line); //wyrzuca wszystko pobrane do konsoli
+    var line2 = line.join(" ");
+    console.log(line2);
+    var line3 = line2.split(" ");
+    console.log(line3);
+    var komendy = [];
+    for(i=0; i<line3.length; i++){
+        console.log("1");
+        if(line3[i] == "fd"){
+            komendy.push([line3[i], line3[++i]]);
+            console.log(komendy);
+            console.log(line3);
+        }else if(line3[i] == "rt"){
+            komendy.push([line3[i], line3[++i]]);
+            console.log(komendy);
+            console.log(line3);
+        }else if(line3[i] == "jp"){
+            komendy.push([line3[i], line3[++i]]);
+            console.log(komendy);
+            console.log(line3);
+        }else if(line3[i] == "ht"){
+            komendy.push([line3[i]]);
+            console.log(komendy);
+            console.log(line3);
+        }else if(line3[i] == "CS"){
+            komendy.push([line3[i]]);
+            console.log(komendy);
+            console.log(line3);
+        }
+
+    }
+    
+}
