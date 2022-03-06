@@ -229,6 +229,7 @@ function rozbijanie(word) {
     console.log(line); //wyrzuca wszystko pobrane do konsoli
     var line2 = line.join(" ");
     console.log(line2);
+    var line2 = line2.toLowerCase();
     line3 = line2.split(" ");
     console.log(line3);
     komendy = [];
