@@ -15,19 +15,19 @@ function remove(){
          document.querySelector("#text_area").value = document.write="fd 100 rt 90 fd 100 rt 90 fd 100 rt 90 fd 100 rt 90";
         }
     function trojkat(){
-        document.querySelector("#text_area").value = document.write="rt 45 fd 100 rt 90 fd 100 rt 135 fd 150";
+        document.querySelector("#text_area").value = document.write="rt 45 fd 100 rt 90 fd 100 rt 135 fd 150 rt 90";
         }
     function pro(){
         document.querySelector("#text_area").value = document.write="fd 100 rt 90 fd 300 rt 90 fd 100 rt 90 fd 300 rt 90";
         }      
-        function trapez(){
-                document.querySelector("#text_area").value = document.write="rt 30 fd 100 rt 60 fd 100 rt 60 fd 100 rt 120 fd 200 rt 90";
+    function trapez(){
+        document.querySelector("#text_area").value = document.write="rt 30 fd 100 rt 60 fd 100 rt 60 fd 100 rt 120 fd 200 rt 90";
         }                  
-        function replace(){
-            document.getElementById("inf").interHTML="";
+    function replace(){
+        document.getElementById("inf").interHTML="";
 
         }
 
-        function inst(){
-            document.getElementById("inf").innerHTML="<centre><p>Przygotowaliśmy instrukcje komend oraz gotowe zestawy</p>fd - rzuf idzie<br>rt - obrót o *kąt* w prawo<br>jp = rzuf skacze<br>ht - chowa rzufia</p></centre>";
+    function inst(){
+        document.getElementById("inf").innerHTML="<centre><p>Przygotowaliśmy instrukcje komend oraz gotowe procedury prostych kształtów</p>FD - Żółw idzie do przodu<br>BK - Żółw idzie do tyłu<br>RT - Obrót o *kąt* w prawo<br>LT - Obrót o *kąt* w lewo<br>HT - Żółw się chowa<br>ST - Żółw się pojawia<br>CS - Czyści ekran<br>PU - Żółw nie zostawia śladu<br>PD - Żółw zostawia ślad<br>Repeat - Powtarza komendę daną ilość razy</p></centre>";
         }
