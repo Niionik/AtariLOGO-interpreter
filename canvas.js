@@ -71,12 +71,16 @@ class Turtle {
         rzuf.draw();
     }
 
-    rt(){
-
+    rt(pixels){
+        rzuf.remove();
+        rzuf.angle -= pixels;
+        rzuf.draw();
     }
 
-    lt(){
-
+    lt(pixels){
+        rzuf.remove();
+        rzuf.angle -= pixels * (-1);
+        rzuf.draw();
     }
 
     ht(){
@@ -96,7 +100,7 @@ class Turtle {
     }
 
     pd(){
-        
+
     }
 
     drawTurtle() {
@@ -186,26 +190,26 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
         rzuf.fd(value * (-1));
         rzuf.draw();
 
-    } else if (direction == "RT") {
+    } else if (direction == "RT") { //przenieść do klasy trzeba
         rzuf.remove();
         rzuf.angle -= value;
         rzuf.draw();
 
-    } else if (direction == "LT") {
+    } else if (direction == "LT") { //przenieść do klasy trzeba
         rzuf.remove();
         rzuf.angle -= value * (-1);
         rzuf.draw();
-    } else if (direction == "jp") { 
+    } else if (direction == "jp") { //potrzebne?
         rzuf.remove();
         wspx = wx + wspx;
         wspy = wspy - wy;
         ctx.moveTo(wspx, wspy);
         ctx.stroke();
-    } else if (direction == "HT") {
+    } else if (direction == "HT") { //done
         rzuf.remove();
-    } else if (direction == "ST"){
+    } else if (direction == "ST"){ //done
         rzuf.draw();
-    } else if (direction == "CS") {
+    } else if (direction == "CS") { //done
         rzuf.start();
         //window.setInterval(location.reload(true), 1);
     } else {
@@ -234,9 +238,9 @@ function rozbijanie(word) {
             komendy.push([line3[i], line3[++i]]);
         } else if (line3[i] == "bk"){
             komendy.push([line3[i], line3[++i]]);
-        }else if (line3[i] == "RT") {
+        }else if (line3[i] == "rt") {
             komendy.push([line3[i], line3[++i]]);
-        } else if (line3[i] == "LT"){
+        } else if (line3[i] == "lt"){
             komendy.push([line3[i], line3[++i]]);
         } else if (line3[i] == "jp") {
             komendy.push([line3[i], line3[++i]]);
