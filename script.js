@@ -32,3 +32,4 @@ function remove(){
         function inst(){
             document.getElementById("inf").innerHTML="<centre><p>Przygotowaliśmy instrukcje komend oraz gotowe zestawy</p>fd - rzuf idzie<br>rt - obrót o *kąt* w prawo<br>jp = rzuf skacze<br>ht - chowa rzufia</p></centre>";
         }
+

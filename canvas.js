@@ -1,11 +1,11 @@
-var c = document.getElementById("myCanvas"); //TODO: dwa canvasy, na jednym rzuf a na drugim linie
+var c = document.getElementById("myCanvas");
 c.width = window.innerWidth;
 c.height = window.innerHeight;
 var ctx = c.getContext("2d");
 var img = document.getElementById("rzut1");
-//ctx.drawImage(img, 900, 700);
 
-var v = document.getElementById("youCanvas"); //TODO: dwa canvasy, na jednym rzuf a na drugim linie
+
+var v = document.getElementById("youCanvas");
 v.width = window.innerWidth;
 v.height = window.innerHeight;
 var ctv = v.getContext("2d");
@@ -27,10 +27,11 @@ class Turtle {
     ctv = null;
     turtleImg;
 
+    penDown = true;
+
     constructor(post_x, post_y, ctx, ctv, turtleImg) {
         this.turtleImg = turtleImg;
-        var isLoaded = this.turtleImg.complete && this.turtleImg.naturalHeight !== 0;
-        console.log(isLoaded);
+
         this.pos_x = post_x;
         this.pos_y = post_y;
 
@@ -41,11 +42,10 @@ class Turtle {
         this.ctv = ctv;
 
         this.ctx.moveTo(this.pos_x, this.pos_y);
-        // this.ctx.moveTo(0, 0);
     }
 
     fd(pixels) {
-
+        this.remove();
         var wx = pixels * Math.sin(this.getAngle())
         var wy = pixels * Math.cos(this.getAngle());
 
@@ -54,6 +54,56 @@ class Turtle {
 
         this.pos_x -= wx;
         this.pos_y -= wy;
+        this.draw();
+    }
+
+    bk(pixels) {
+        pixels = pixels * (-1);
+        this.remove();
+        var wx = pixels * Math.sin(this.getAngle())
+        var wy = pixels * Math.cos(this.getAngle());
+
+        this.last_pos_x = this.pos_x;
+        this.last_pos_y = this.pos_y;
+
+        this.pos_x -= wx;
+        this.pos_y -= wy;
+        this.draw();
+    }
+
+    rt(pixels) {
+        this.remove();
+        this.angle -= pixels;
+        this.draw();
+    }
+
+    lt(pixels) {
+        this.remove();
+        this.angle -= pixels * (-1);
+        this.draw();
+    }
+
+    ht() {
+        this.remove();
+    }
+
+    st() {
+        this.draw();
+    }
+
+    cs() {
+        this.start();
+    }
+
+    pu() {
+        this.penDown = false;
+    }
+
+    pd() {
+        this.penDown = true;
+    }
+
+    repeat() {
 
     }
 
@@ -82,28 +132,26 @@ class Turtle {
 
     draw() {
 
-        // ctx.clearRect((wspx - wx),(wspy+wy));
-        // ctx.drawImage(img, post_x, post_y);
-        console.log(this.pos_x, this.pos_y, this.angle);
-
-        this.ctx.beginPath(); //rozpocznij rysowanie
-        this.ctx.moveTo(this.last_pos_x, this.last_pos_y);
-        this.ctx.lineTo(this.pos_x, this.pos_y); //rysuje linie po tej trasie
-        this.ctx.stroke(); //zakończ rysowanie - rysuj
+        if (this.penDown) {
+            this.ctx.beginPath();
+            this.ctx.moveTo(this.last_pos_x, this.last_pos_y);
+            this.ctx.lineTo(this.pos_x, this.pos_y);
+            this.ctx.stroke();
+        }
 
         this.drawTurtle();
     }
+
     remove() {
         ctv.clearRect(0, 0, ctv.canvas.width, ctv.canvas.height);
         ctv.stroke();
     }
+
     start() {
         this.ctx.stroke();
         ctx.moveTo(rzptw, rzpth);
         rzuf.remove();
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
-
     }
 
 }
@@ -111,106 +159,67 @@ class Turtle {
 let rzuf = new Turtle(rzptw, rzpth, ctx, ctv, img);
 
 img.onload = function() {
-    console.log("95");
     rzuf = new Turtle(rzptw, rzpth, ctx, ctv, img);
 }
-console.log("95");
 
 wspx = (c.width / 2);
 wspy = (c.height / 2);
 var alfa = 0;
 
 
-function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
+function draw() { 
 
-    var word = document.querySelector("#text_area").value;
-    var split = word.split(" ");
-    var direction = split[0];
-    var value = Number(split[1]);
+    fragment();
 
-    rozbijanie(word);
-
-    if (direction == "FD") {
-        rzuf.remove();
-        rzuf.fd(value);
-        rzuf.draw();
-
-    } else if (direction == "BK") {
-        rzuf.remove();
-        rzuf.fd(value * (-1));
-        rzuf.draw();
-
-    } else if (direction == "RT") {
-        rzuf.remove();
-        rzuf.angle -= value;
-        rzuf.draw();
-
-    } else if (direction == "LT") {
-        rzuf.remove();
-        rzuf.angle -= value * (-1);
-        rzuf.draw();
-    } else if (direction == "jp") { 
-        rzuf.remove();
-        wspx = wx + wspx;
-        wspy = wspy - wy;
-        ctx.moveTo(wspx, wspy);
-        ctx.stroke();
-    } else if (direction == "HT") {
-        rzuf.remove();
-    } else if (direction == "ST"){
-        rzuf.draw();
-    } else if (direction == "CS") {
-
-        rzuf.start();
-        //window.setInterval(location.reload(true), 1);
-
-
-    } else {
-        alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
-
-    }
-    document.querySelector("#text_area").value = null; //czyści pole tekstowe po uruchomieniu komendy
+    for (var cmd of commands) {
+        if(isNaN(cmd[1])){
+            alert("Uwaga: parametr komendy "+ cmd[0] +" musi być liczbą");
+        } else {
+        rzuf[cmd[0]](typeof cmd[1] !== "undefined" ? cmd[1] : null); 
+        }
+    } 
+    
+    document.querySelector("#text_area").value = null; 
 }
 
-/*KOMENDY I ILE MAJA PARAMETROW:
-FD - I  RT - I  ST - 0  PU - 0  CS - 0
-BK - I  LT - I  HT - 0  PD - 0
-*/
 
-function rozbijanie(word) {
-    var line = word.split("\n"); //rozbija po \n
-    console.log("ile komend = " + line.length);
-    console.log(line); //wyrzuca wszystko pobrane do konsoli
+function fragment() {
+
+    var word = document.querySelector("#text_area").value;
+
+    var line = word.split("\n"); 
+
     var line2 = line.join(" ");
-    console.log(line2);
-    var line3 = line2.split(" ");
-    console.log(line3);
-    var komendy = [];
-    for (i = 0; i < line3.length; i++) {
-        console.log("1");
-        if (line3[i] == "FD") {
-            komendy.push([line3[i], line3[++i]]);
-        } else if (line3[i] == "BK"){
-            komendy.push([line3[i], line3[++i]]);
-        }else if (line3[i] == "RT") {
-            komendy.push([line3[i], line3[++i]]);
-        } else if (line3[i] == "LT"){
-            komendy.push([line3[i], line3[++i]]);
-        } else if (line3[i] == "jp") {
-            komendy.push([line3[i], line3[++i]]);
-        } else if (line3[i] == "HT") {
-            komendy.push([line3[i]]);
-        } else if (line3[i] == "ST"){
-            komendy.push([line3[i]]);
-        } else if (line3[i] == "CS") {
-            komendy.push([line3[i]]);
-        } else if (line3[i] == "PU"){
-            komendy.push([line3[i]]);
-        } else if (line3[i] == "PD"){
-            komendy.push([line3[i]]);
-        }
+    var line2 = line2.toLowerCase();
 
+    line3 = line2.split(" ");
+
+    commands = [];
+
+    for (i = 0; i < line3.length; i++) {
+
+        if (line3[i] == "fd") {
+            commands.push([line3[i], line3[++i]]);
+        } else if (line3[i] == "bk") {
+            commands.push([line3[i], line3[++i]]);
+        } else if (line3[i] == "rt") {
+            commands.push([line3[i], line3[++i]]);
+        } else if (line3[i] == "lt") {
+            commands.push([line3[i], line3[++i]]);
+        } else if (line3[i] == "jp") {
+            commands.push([line3[i], line3[++i]]);
+        } else if (line3[i] == "ht") {
+            commands.push([line3[i]]);
+        } else if (line3[i] == "st") {
+            commands.push([line3[i]]);
+        } else if (line3[i] == "cs") {
+            commands.push([line3[i]]);
+        } else if (line3[i] == "pu") {
+            commands.push([line3[i]]);
+        } else if (line3[i] == "pd") {
+            commands.push([line3[i]]);
+        } else {
+            alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
+        }
     }
-    console.log(komendy);
-    console.log(line3);
 }
