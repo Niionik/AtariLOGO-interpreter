@@ -119,34 +119,35 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
     var split = word.split(" ");
     var direction = split[0];
     var value = Number(split[1]);
-    
+
     rozbijanie(word);
 
-    if (direction == "fd") {
+    if (direction == "FD") {
         rzuf.remove();
         rzuf.fd(value);
         rzuf.draw();
 
-    } else if (direction == "rt") {
+    } else if (direction == "RT") {
         rzuf.remove();
         rzuf.angle -= value;
         rzuf.draw();
 
+    } else if (direction == "LT") {
+        rzuf.remove();
+        rzuf.angle -= value * (-1);
+        rzuf.draw();
     } else if (direction == "jp") {
         rzuf.remove();
         wspx = wx + wspx;
         wspy = wspy - wy;
         ctx.moveTo(wspx, wspy);
         ctx.stroke();
-    } else if (direction == "ht") {
+    } else if (direction == "HT") {
         rzuf.remove();
     } else if (direction == "CS") {
         rzuf.remove();
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-        console.log(rzptw, rzpth);
 
-        console.log(post_x, post_y);
-        console.log(wspx, wspy);
         ctx.moveTo(rzptw, rzpth);
 
 
@@ -158,39 +159,39 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
 }
 
 
-function rozbijanie(word){
+function rozbijanie(word) {
     var line = word.split("\n"); //rozbija po \n
-    console.log("ile komend = "+line.length);
+    console.log("ile komend = " + line.length);
     console.log(line); //wyrzuca wszystko pobrane do konsoli
     var line2 = line.join(" ");
     console.log(line2);
     var line3 = line2.split(" ");
     console.log(line3);
     var komendy = [];
-    for(i=0; i<line3.length; i++){
+    for (i = 0; i < line3.length; i++) {
         console.log("1");
-        if(line3[i] == "fd"){
+        if (line3[i] == "FD") {
             komendy.push([line3[i], line3[++i]]);
             console.log(komendy);
             console.log(line3);
-        }else if(line3[i] == "rt"){
+        } else if (line3[i] == "RT") {
             komendy.push([line3[i], line3[++i]]);
             console.log(komendy);
             console.log(line3);
-        }else if(line3[i] == "jp"){
+        } else if (line3[i] == "jp") {
             komendy.push([line3[i], line3[++i]]);
             console.log(komendy);
             console.log(line3);
-        }else if(line3[i] == "ht"){
+        } else if (line3[i] == "ht") {
             komendy.push([line3[i]]);
             console.log(komendy);
             console.log(line3);
-        }else if(line3[i] == "CS"){
+        } else if (line3[i] == "CS") {
             komendy.push([line3[i]]);
             console.log(komendy);
             console.log(line3);
         }
 
     }
-    
+
 }
