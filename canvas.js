@@ -97,6 +97,14 @@ class Turtle {
         ctv.clearRect(0, 0, ctv.canvas.width, ctv.canvas.height);
         ctv.stroke();
     }
+    start() {
+        this.ctx.stroke();
+        ctx.moveTo(rzptw, rzpth);
+        rzuf.remove();
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+
+    }
 
 }
 
@@ -127,6 +135,11 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
         rzuf.fd(value);
         rzuf.draw();
 
+    } else if (direction == "BK") {
+        rzuf.remove();
+        rzuf.fd(value * (-1));
+        rzuf.draw();
+
     } else if (direction == "RT") {
         rzuf.remove();
         rzuf.angle -= value;
@@ -145,11 +158,9 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
     } else if (direction == "HT") {
         rzuf.remove();
     } else if (direction == "CS") {
-        /* rzuf.remove();
-         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-         ctx.moveTo(rzptw, rzpth);*/
-        window.setInterval(location.reload(true), 1);
+        rzuf.start();
+        //window.setInterval(location.reload(true), 1);
 
 
     } else {
@@ -158,6 +169,7 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
     }
     document.querySelector("#text_area").value = null; //czyści pole tekstowe po uruchomieniu komendy
 }
+
 
 
 function rozbijanie(word) {
