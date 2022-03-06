@@ -45,7 +45,7 @@ class Turtle {
     }
 
     fd(pixels) {
-        rzuf.remove();
+        this.remove();
         var wx = pixels * Math.sin(this.getAngle())
         var wy = pixels * Math.cos(this.getAngle());
 
@@ -54,12 +54,12 @@ class Turtle {
 
         this.pos_x -= wx;
         this.pos_y -= wy;
-        rzuf.draw();
+        this.draw();
     }
 
     bk(pixels){
         pixels = pixels * (-1);
-        rzuf.remove();
+        this.remove();
         var wx = pixels * Math.sin(this.getAngle())
         var wy = pixels * Math.cos(this.getAngle());
 
@@ -68,31 +68,31 @@ class Turtle {
 
         this.pos_x -= wx;
         this.pos_y -= wy;
-        rzuf.draw();
+        this.draw();
     }
 
     rt(pixels){
-        rzuf.remove();
-        rzuf.angle -= pixels;
-        rzuf.draw();
+        this.remove();
+        this.angle -= pixels;
+        this.draw();
     }
 
     lt(pixels){
-        rzuf.remove();
-        rzuf.angle -= pixels * (-1);
-        rzuf.draw();
+        this.remove();
+        this.angle -= pixels * (-1);
+        this.draw();
     }
 
     ht(){
-        rzuf.remove();
+        this.remove();
     }
 
     st(){
-        rzuf.draw();
+        this.draw();
     }
 
     cs(){
-        rzuf.start();
+        this.start();
     }
 
     pu(){
