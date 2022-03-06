@@ -130,6 +130,10 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
 
     rozbijanie(word);
 
+   for (var cmd of komendy){
+            rzuf[cmd[0]](cmd[1] ?? null, cmd[2] ?? null, cmd[3] ?? null) //to ma wywoływać klasy z klasy turtle
+    }
+
     if (direction == "FD") {
         rzuf.remove();
         rzuf.fd(value);
@@ -160,14 +164,10 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
     } else if (direction == "ST"){
         rzuf.draw();
     } else if (direction == "CS") {
-
         rzuf.start();
         //window.setInterval(location.reload(true), 1);
-
-
     } else {
         alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
-
     }
     document.querySelector("#text_area").value = null; //czyści pole tekstowe po uruchomieniu komendy
 }
@@ -183,9 +183,9 @@ function rozbijanie(word) {
     console.log(line); //wyrzuca wszystko pobrane do konsoli
     var line2 = line.join(" ");
     console.log(line2);
-    var line3 = line2.split(" ");
+    line3 = line2.split(" ");
     console.log(line3);
-    var komendy = [];
+    komendy = [];
     for (i = 0; i < line3.length; i++) {
         console.log("1");
         if (line3[i] == "FD") {
