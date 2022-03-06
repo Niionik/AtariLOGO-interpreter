@@ -57,6 +57,48 @@ class Turtle {
         rzuf.draw();
     }
 
+    bk(pixels){
+        pixels = pixels * (-1);
+        rzuf.remove();
+        var wx = pixels * Math.sin(this.getAngle())
+        var wy = pixels * Math.cos(this.getAngle());
+
+        this.last_pos_x = this.pos_x;
+        this.last_pos_y = this.pos_y;
+
+        this.pos_x -= wx;
+        this.pos_y -= wy;
+        rzuf.draw();
+    }
+
+    rt(){
+
+    }
+
+    lt(){
+
+    }
+
+    ht(){
+        rzuf.remove();
+    }
+
+    st(){
+        rzuf.draw();
+    }
+
+    cs(){
+        rzuf.start();
+    }
+
+    pu(){
+
+    }
+
+    pd(){
+        
+    }
+
     drawTurtle() {
         this.ctv.save()
 
@@ -134,12 +176,12 @@ function draw() { //funkcja gdzie jest w sumie wszystko do rysowania
             rzuf[cmd[0]](cmd[1] ?? null) //to ma wywoływać klasy z klasy turtle
     }
 /*
-    if (direction == "fd") {
+    if (direction == "fd") {//done
         rzuf.remove();
         rzuf.fd(value);
         rzuf.draw();
 
-    } else if (direction == "BK") {
+    } else if (direction == "BK") { //done
         rzuf.remove();
         rzuf.fd(value * (-1));
         rzuf.draw();
@@ -190,7 +232,7 @@ function rozbijanie(word) {
         console.log("1");
         if (line3[i] == "fd") {
             komendy.push([line3[i], line3[++i]]);
-        } else if (line3[i] == "BK"){
+        } else if (line3[i] == "bk"){
             komendy.push([line3[i], line3[++i]]);
         }else if (line3[i] == "RT") {
             komendy.push([line3[i], line3[++i]]);
@@ -198,15 +240,15 @@ function rozbijanie(word) {
             komendy.push([line3[i], line3[++i]]);
         } else if (line3[i] == "jp") {
             komendy.push([line3[i], line3[++i]]);
-        } else if (line3[i] == "HT") {
+        } else if (line3[i] == "ht") {
             komendy.push([line3[i]]);
-        } else if (line3[i] == "ST"){
+        } else if (line3[i] == "st"){
             komendy.push([line3[i]]);
-        } else if (line3[i] == "CS") {
+        } else if (line3[i] == "cs") {
             komendy.push([line3[i]]);
-        } else if (line3[i] == "PU"){
+        } else if (line3[i] == "pu"){
             komendy.push([line3[i]]);
-        } else if (line3[i] == "PD"){
+        } else if (line3[i] == "pd"){
             komendy.push([line3[i]]);
         }
 
