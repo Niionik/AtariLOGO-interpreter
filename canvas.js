@@ -168,7 +168,7 @@ function runCommands(commands) {
     for (var cmd of commands) {
         if (cmd[0] == 'repeat') {
             for (let j = 0; j < cmd[1]; j++) {
-                runCommands(cmd[2])
+                runCommands(cmd[2]);
             }
         }
         if (cmd[0] == "cs" || cmd[0] == "pu" || cmd[0] == "pd" || cmd[0] == "st" || cmd[0] == "ht") {
@@ -188,19 +188,6 @@ function draw() {
     runCommands(commands);
 
 }
-
-
-function repaet() {
-    fragment();
-
-    runCommands();
-
-    // fragment();
-
-
-}
-
-
 
 function fragment() {
 
@@ -238,10 +225,10 @@ function fragment() {
         } else if (line3[i] == "pd") {
             commands.push([line3[i]]);
         } else if (line3[i] == "repeat") {
-            var repeat = [lines3[i], lines3[++i]];
-            var nextCommands = lines3.split(i, ).join(" ");
+            var repeat = [line3[i], line3[++i]];
+            var nextCommands = line3.split(i, ).join(" ");
             var lastCloser = loopCommands.lastIndexOf("]");
-            var loopCommands = lines3.split(i, lastCloser).join(" ");
+            var loopCommands = line3.split(i, lastCloser).join(" ");
             var loopArray = rozbijanie(loopCommands);
 
             commands.push((repeat[0], repeat[1], loopArray));
