@@ -144,7 +144,7 @@ canvas {
 #d1 {
     background-color: #B5B58A;
     width: 100%;
-    height: 6%;
+    height: 5%;
     border: 1px solid black;
     display: block;
     text-align: center;
@@ -156,6 +156,6 @@ canvas {
     cursor: pointer;
 }
 
-#napisy{
+#napisy {
     visibility: hidden;
 }
