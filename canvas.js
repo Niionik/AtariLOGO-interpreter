@@ -164,31 +164,35 @@ wspy = (c.height / 2);
 var alfa = 0;
 
 
+function runCommands(commands) {
+    for (var cmd of commands) {
+        //if (!Number(cmd[1]) == true) {
+        //alert("Uwaga: parametr komendy " + cmd[0] + " musi być liczbą");
+        //} else {
+        rzuf[cmd[0]](typeof cmd[1] !== "undefined" ? cmd[1] : null);
+        //}
+    }
+
+}
+
+
 function draw() {
 
     fragment();
 
-    for (var cmd of commands) {
-        if (isNaN(cmd[1])) {
-            alert("Uwaga: parametr komendy " + cmd[0] + " musi być liczbą");
-        } else {
-            rzuf[cmd[0]](typeof cmd[1] !== "undefined" ? cmd[1] : null);
-        }
-    }
+    runCommands(commands);
 
-    document.querySelector("#text_area").value = null;
 }
 
-function repaet() {
-    for (var cmd of commands) {
-        if (isNaN(cmd[1])) {
-            alert("Uwaga: parametr komendy " + cmd[0] + " musi być liczbą");
-        } else {
-            rzuf[cmd[0]](typeof cmd[1] !== "undefined" ? cmd[1] : null);
-        }
-    }
 
-    document.querySelector("#text_area").value = null;
+function repaet() {
+    fragment();
+
+    runCommands();
+
+    repaet()
+
+
 }
 
 

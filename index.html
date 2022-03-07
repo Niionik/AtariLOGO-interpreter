@@ -24,27 +24,41 @@
                     <p>Instrukcja</p>
                 </div>
                 <div class="menu-bot" onclick="replace()">
-                    <p>Pokaż KOD</p>
+                    <p>Schowaj instrukcję</p>
                 </div>
 
             </div>
             <div id="inf">
                 <ul id="menu-list">
                     <li id="menu-point">
+                        <br>
                         <img src="img/rzut1.png" id="rzut1" alt="Nasz Złówik">
-                        <p> To nasz mały przyjaciel - Żółwik, będzie on nam towarzyszył w interpreterze jako przewodnik ;) możesz go nazywać jak chcesz np.Marcin :D
-                            </p>
+                        <p> To nasz mały przyjaciel - Żółwik, będzie on nam towarzyszył w interpreterze jako przewodnik ;) możesz go nazywać jak chcesz np.Marcin :D. Wpisz komendę aby żółw pojawił się na planszy. Jeśli nie wiesz jakich komend możesz użyć,
+                            znajdują się ona w zakładce "Instrukcja" powyżej.
+                        </p>
                     </li>
                     <li>
                         <p>Poniżej znajdują się gotowe przykładowe procedury:</p>
                     </li>
+
                 </ul>
-                
-                <div id="d1" onclick="kolo()" >Gwiazda</div>
+
+                <div id="d1" onclick="kolo()">Gwiazda</div>
                 <div id="d1" onclick="kwadrat()">Kwadrat</div>
                 <div id="d1" onclick="trojkat()">Trójkąt</div>
-                <div id="d1" onclick="pro()" >Prostokąt</div>
+                <div id="d1" onclick="pro()">Prostokąt</div>
                 <div id="d1" onclick="trapez()">Trapez</div>
+                <ul id="menu-list">
+                    <li>
+                        <div id="napisy">
+                            <p>Poniżej znajduje się opis działania każdej z komend:<br> FD - Żółw idzie do przodu<br> BK - Żółw idzie do tyłu<br> RT - Obrót o *kąt* w prawo<br> LT - Obrót o *kąt* w lewo<br> HT - Żółw się chowa<br> ST - Żółw się pojawia<br>                                CS - Czyści ekran<br> PU - Żółw nie zostawia śladu<br> PD - Żółw zostawia ślad<br> Repeat - Powtarza komendę daną ilość razy (WIP)</p>
+                        </div>
+                    </li>
+
+
+                </ul>
+
+
             </div>
         </div>
         <div id="interface">
@@ -58,7 +72,7 @@
                     <textarea id="text_area" rows="3" cols="100" placeholder="Wpisz swoją komendę! :)..."></textarea>
                 </div>
                 <input type="button" value="Wykonaj" onclick="draw()">
-                <input id="clear" type="button" value="Usuń" onclick="remove()">
+                <input id="clear" type="button" value="Wyczyść kod" onclick="remove()">
             </div>
 
         </div>
