@@ -166,6 +166,11 @@ var alfa = 0;
 
 function runCommands(commands) {
     for (var cmd of commands) {
+        if (cmd[0] == 'repeat') {
+            for (let j = 0; j < cmd[1]; j++) {
+                runCommands(cmd[2])
+            }
+        }
         if (cmd[0] == "cs" || cmd[0] == "pu" || cmd[0] == "pd" || cmd[0] == "st" || cmd[0] == "ht") {
             rzuf[cmd[0]](typeof cmd[1] !== "undefined" ? cmd[1] : null);
         } else if (!Number(cmd[1]) == true) {
@@ -174,9 +179,7 @@ function runCommands(commands) {
             rzuf[cmd[0]](typeof cmd[1] !== "undefined" ? cmd[1] : null);
         }
     }
-
 }
-
 
 function draw() {
 
@@ -192,8 +195,7 @@ function repaet() {
 
     runCommands();
 
-    repaet()
-        // fragment();
+    // fragment();
 
 
 }
