@@ -162,6 +162,7 @@ img.onload = function() {
 wspx = (c.width / 2);
 wspy = (c.height / 2);
 var alfa = 0;
+var word = document.querySelector("#text_area").value;
 
 
 function runCommands(commands) {
@@ -182,17 +183,17 @@ function runCommands(commands) {
 }
 
 function draw() {
+    var word = document.querySelector("#text_area").value;
 
-    fragment();
+    fragment(word);
 
     runCommands(commands);
 
 }
 
 
-function fragment() {
+function fragment(word) {
     
-    var word = document.querySelector("#text_area").value;
 
     var line = word.split("\n");
 
@@ -228,9 +229,12 @@ function fragment() {
         } else if (line3[i] == "repeat") {
             var repeat = [line3[i], line3[++i]];
             var nextCommands = line3.slice(i).join(" ");
-            var lastCloser = nextCommands.lastIndexOf("]");
-            var loopCommands = line3.slice(i, lastCloser).join(" ");
-            var loopArray = fragment(loopCommands);
+			var start = nextCommands.indexOf("[")+1;
+			var end = nextCommands.lastIndexOf("]")-1;
+			
+			var loopCommands = nextCommands.slice(start, end);
+			
+			var loopArray = fragment(loopCommands);
 
             commands.push((repeat[0], repeat[1], loopArray));
 
