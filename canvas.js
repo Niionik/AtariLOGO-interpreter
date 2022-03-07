@@ -185,7 +185,7 @@ function runCommands(commands) {
 function draw() {
     var word = document.querySelector("#text_area").value;
 
-    fragment(word);
+    var  commands = fragment(word);
 
     runCommands(commands);
 
@@ -195,14 +195,14 @@ function draw() {
 function fragment(word) {
     
 
-    var line = word.split("\n");
+    var line = word.trim().toLowerCase().split("\n");
 
     var line2 = line.join(" ");
     var line2 = line2.toLowerCase();
 
     line3 = line2.split(" ");
 
-    commands = [];
+    var commands = [];
 
     for (i = 0; i < line3.length; i++) {
 
@@ -236,10 +236,11 @@ function fragment(word) {
 			
 			var loopArray = fragment(loopCommands);
 
-            commands.push((repeat[0], repeat[1], loopArray));
+            commands.push([repeat[0], repeat[1], loopArray]);
 
         } else {
             alert("Wpisz poprawnie kumplu :D  W razie problemów instrukcja jest tam <-----");
         }
     }
+    return commands;
 }
