@@ -189,9 +189,10 @@ function draw() {
 
 }
 
-function fragment() {
+var word = document.querySelector("#text_area").value;
 
-    var word = document.querySelector("#text_area").value;
+function fragment(word) {
+
 
     var line = word.split("\n");
 
