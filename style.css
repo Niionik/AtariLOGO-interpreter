@@ -150,3 +150,8 @@ canvas {
     text-align: center;
     font-size: 35px;
 }
+
+#d1:hover {
+    background-color: #94946E;
+    cursor: pointer;
+}
