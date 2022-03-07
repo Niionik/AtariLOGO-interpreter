@@ -227,9 +227,9 @@ function fragment() {
         } else if (line3[i] == "repeat") {
             var repeat = [line3[i], line3[++i]];
             var nextCommands = line3.slice(i).join(" ");
-            var lastCloser = loopCommands.lastIndexOf("]");
+            var lastCloser = nextCommands.lastIndexOf("]");
             var loopCommands = line3.slice(i, lastCloser).join(" ");
-            var loopArray = rozbijanie(loopCommands);
+            var loopArray = fragment(loopCommands);
 
             commands.push((repeat[0], repeat[1], loopArray));
 
