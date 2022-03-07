@@ -155,3 +155,7 @@ canvas {
     background-color: #94946E;
     cursor: pointer;
 }
+
+#napisy{
+    visibility: hidden;
+}

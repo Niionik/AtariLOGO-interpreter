@@ -24,11 +24,11 @@ function remove(){
         document.querySelector("#text_area").value = document.write="rt 30 fd 100 rt 60 fd 100 rt 60 fd 100 rt 120 fd 200 rt 90";
         }                  
     function replace(){
-        document.getElementById("inf").interHTML="";
+        document.getElementById("napisy").style.visibility = "hidden";
         }
 
     function inst(){
-        document.getElementById("inf").innerHTML="<centre><p>Poniżej znajduje się opis działania każdej z komend: </p>FD - Żółw idzie do przodu<br>BK - Żółw idzie do tyłu<br>RT - Obrót o *kąt* w prawo<br>LT - Obrót o *kąt* w lewo<br>HT - Żółw się chowa<br>ST - Żółw się pojawia<br>CS - Czyści ekran<br>PU - Żółw nie zostawia śladu<br>PD - Żółw zostawia ślad<br>Repeat - Powtarza komendę daną ilość razy (WIP)</p></centre>";
+        document.getElementById("napisy").style.visibility = "visible";
         }
 
     function base(){
